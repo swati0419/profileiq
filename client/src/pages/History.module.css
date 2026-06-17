@@ -1,0 +1,44 @@
+.pageHeader { margin-bottom: 1.5rem; }
+.title { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+.subtitle { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+
+.list { display: flex; flex-direction: column; gap: 8px; }
+.row {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: var(--shadow);
+}
+.rowMain { flex: 1; min-width: 0; }
+.rowTitle { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rowMeta { font-size: 12px; color: var(--text-muted); margin-top: 2px; text-transform: capitalize; }
+
+.rowScores { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.scoreHint { font-size: 11px; color: var(--text-hint); }
+
+.badge { font-size: 12px; font-weight: 600; padding: 2px 9px; border-radius: 20px; }
+.badgeGreen { background: var(--success-light); color: var(--success); }
+.badgeAmber { background: var(--warning-light); color: var(--warning); }
+.badgeRed { background: var(--danger-light); color: var(--danger); }
+
+.rowActions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.viewBtn { font-size: 13px; color: var(--accent); font-weight: 500; }
+.viewBtn:hover { text-decoration: underline; }
+.deleteBtn {
+  background: none;
+  border: none;
+  font-size: 13px;
+  color: var(--text-hint);
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  transition: color 0.12s, background 0.12s;
+}
+.deleteBtn:hover { color: var(--danger); background: var(--danger-light); }
+
+.empty { text-align: center; padding: 3rem; color: var(--text-muted); }
+.empty a { color: var(--accent); display: block; margin-top: 8px; }
+.loading { padding: 2rem; color: var(--text-muted); } 
