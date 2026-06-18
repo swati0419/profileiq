@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import axios from 'axios'
+import api from '../utils/api'
 import { RadarChart, Radar, PolarGrid, PolarAngleAxis, ResponsiveContainer, Tooltip } from 'recharts'
 import styles from './Results.module.css'
 
@@ -48,7 +48,7 @@ export default function Results() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    axios.get(`/api/assessments/${id}`)
+    api.get(`/api/assessments/${id}`)
       .then((r) => setData(r.data))
       .catch(() => setError('Could not load assessment.'))
       .finally(() => setLoading(false))

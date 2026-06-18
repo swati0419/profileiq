@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import api from '../utils/api'
 import styles from './Analyze.module.css'
 
 const ROLE_TYPES = [
@@ -70,7 +70,7 @@ export default function Analyze() {
       formData.append('jobDescription', jdText)
       formData.append('roleType', roleType)
 
-      const { data } = await axios.post('/api/resume/analyze', formData, {
+      const { data } = await api.post('/api/resume/analyze', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
 

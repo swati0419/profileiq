@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
+import api from '../utils/api'
 import styles from './History.module.css'
 
 function ScoreBadge({ value }) {
@@ -13,14 +13,14 @@ export default function History() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    axios.get('/api/assessments')
+    api.get('/api/assessments')
       .then((r) => setItems(r.data))
       .finally(() => setLoading(false))
   }, [])
 
   async function deleteItem(id) {
     if (!confirm('Delete this assessment?')) return
-    await axios.delete(`/api/assessments/${id}`)
+    await api.delete(`/api/assessments/${id}`)
     setItems((prev) => prev.filter((i) => i._id !== id))
   }
 

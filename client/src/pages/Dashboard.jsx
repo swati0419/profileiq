@@ -1,6 +1,6 @@
  import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
+import api from '../utils/api'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Cell } from 'recharts'
 import styles from './Dashboard.module.css'
 
@@ -20,8 +20,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     Promise.all([
-      axios.get('/api/assessments/stats/summary'),
-      axios.get('/api/assessments'),
+      api.get('/api/assessments/stats/summary'),
+      api.get('/api/assessments'),
     ]).then(([s, h]) => {
       setStats(s.data)
       setHistory(h.data)
