@@ -23,8 +23,8 @@
 .bars { display: flex; flex-direction: column; gap: 10px; }
 .barRow, .gapRow { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
 .barMeta { display: flex; justify-content: space-between; font-size: 13px; }
-.barBg { height: 6px; background: var(--border-subtle); border-radius: 3px; overflow: visible; position: relative; }
-.barFill { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
+.barBg { height: 8px; background: var(--border-subtle); border-radius: 3px; overflow: visible; position: relative; }
+.barFill { height: 100%; border-radius: 3px; transition: width 0.5s ease; min-width: 4px; }
 
 .twoCol { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
 @media (max-width: 600px) { .twoCol { grid-template-columns: 1fr; } }

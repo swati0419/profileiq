@@ -31,7 +31,8 @@ function ScoreBar({ name, score }) {
         <span style={{ color }}>{score}%</span>
       </div>
       <div className={styles.barBg}>
-        <div className={styles.barFill} style={{ width: `${score}%`, background: color }} />
+        <div className={styles.barFill} style={{ width: `${g.resume_level}%`, background: 'var(--accent)', opacity: 1 }} />
+        <div className={styles.gapMarker} style={{ left: `${g.required_level}%` }} />
       </div>
     </div>
   )
@@ -127,9 +128,9 @@ export default function Results() {
 
       <div className={styles.card}>
         <h2 className={styles.sectionTitle}>Improvement suggestions</h2>
-       <ol className={styles.suggestions}>
-  {data.suggestions.map((s, i) => <li key={i}>{s}</li>)}
-</ol>
+        <ol className={styles.suggestions}>
+          {data.suggestions.map((s, i) => <li key={i}>{s}</li>)}
+        </ol>
       </div>
     </div>
   )
