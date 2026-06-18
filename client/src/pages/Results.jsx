@@ -31,7 +31,7 @@ function ScoreBar({ name, score }) {
         <span style={{ color }}>{score}%</span>
       </div>
       <div className={styles.barBg}>
-        <div className={styles.barFill} style={{ width: `${Math.max(g.resume_level, 2)}%`, background: 'var(--accent)' }} />
+       <div className={styles.barFill} style={{ width: `${score}%`, background: color }} />
       </div>
     </div>
   )
