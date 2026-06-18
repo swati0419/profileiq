@@ -31,7 +31,7 @@ function ScoreBar({ name, score }) {
         <span style={{ color }}>{score}%</span>
       </div>
       <div className={styles.barBg}>
-       <div className={styles.barFill} style={{ width: `${score}%`, background: color }} />
+        <div className={styles.barFill} style={{ width: `${score}%`, background: color }} />
       </div>
     </div>
   )
@@ -114,7 +114,7 @@ export default function Results() {
               <span className={styles.gapHint}>yours {g.resume_level}% · needed {g.required_level}%</span>
             </div>
             <div className={styles.barBg} style={{ position: 'relative' }}>
-              <div className={styles.barFill} style={{ width: `${g.resume_level}%`, background: 'var(--accent)' }} />
+              <div className={styles.barFill} style={{ width: `${Math.max(g.resume_level, 2)}%`, background: 'var(--accent)' }} />
               <div className={styles.gapMarker} style={{ left: `${g.required_level}%` }} />
             </div>
           </div>
