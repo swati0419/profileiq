@@ -1,6 +1,6 @@
 # ProfileIQ
 
-AI-powered resume evaluation platform. Upload a resume and a job description, and get ATS scoring, keyword analysis, and skill-gap detection powered by AI.
+ProfileIQ is an AI-powered resume evaluation and optimization platform that helps job seekers improve their resumes for Applicant Tracking Systems (ATS). It leverages Groq API to analyze resumes, compare them with job descriptions, detect missing keywords and skills, calculate ATS scores, and generate personalized recommendations. Built with the MERN stack, ProfileIQ offers secure authentication, resume history tracking, and an interactive dashboard for managing analyses.
 
 **Live demo:** https://profileiq-flax.vercel.app
 **Backend API:** https://profileiq-j21e.onrender.com
