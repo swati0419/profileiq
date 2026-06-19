@@ -1,11 +1,14 @@
 const express = require('express');
 const Assessment = require('../models/Assessment');
+const requireAuth = require('../middleware/auth');
 
 const router = express.Router();
 
-router.get('/', async (_req, res) => {
+router.use(requireAuth);
+
+router.get('/', async (req, res) => {
   try {
-    const assessments = await Assessment.find()
+    const assessments = await Assessment.find({ userId: req.userId })
       .select('roleType fileName ats_score keyword_match_score format_score createdAt')
       .sort({ createdAt: -1 })
       .limit(50);
@@ -15,9 +18,10 @@ router.get('/', async (_req, res) => {
   }
 });
 
-router.get('/stats/summary', async (_req, res) => {
+router.get('/stats/summary', async (req, res) => {
   try {
     const stats = await Assessment.aggregate([
+      { $match: { userId: req.userId } },
       {
         $group: {
           _id: null,
@@ -36,7 +40,7 @@ router.get('/stats/summary', async (_req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const assessment = await Assessment.findById(req.params.id);
+    const assessment = await Assessment.findOne({ _id: req.params.id, userId: req.userId });
     if (!assessment) return res.status(404).json({ error: 'Assessment not found.' });
     res.json(assessment);
   } catch (err) {
@@ -46,11 +50,11 @@ router.get('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   try {
-    await Assessment.findByIdAndDelete(req.params.id);
+    await Assessment.findOneAndDelete({ _id: req.params.id, userId: req.userId });
     res.json({ success: true });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-module.exports = router; 
+module.exports = router;

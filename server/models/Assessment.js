@@ -13,6 +13,7 @@ const sectionSchema = new mongoose.Schema({
 
 const assessmentSchema = new mongoose.Schema(
   {
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     resumeText: { type: String, required: true },
     jobDescription: { type: String, required: true },
     roleType: { type: String, required: true },

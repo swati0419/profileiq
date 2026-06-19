@@ -3,6 +3,7 @@ const multer = require('multer');
 const Groq = require('groq-sdk');
 const PDF2Json = require('pdf2json');
 const Assessment = require('../models/Assessment');
+const requireAuth = require('../middleware/auth');
 
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 10 * 1024 * 1024 } });
@@ -31,7 +32,7 @@ const SYSTEM_PROMPT = (role) => `You are an expert ATS evaluator and career coac
   "suggestions": [<6-8 specific actionable improvement sentences>]
 }`;
 
-router.post('/analyze', upload.single('resume'), async (req, res) => {
+router.post('/analyze', requireAuth, upload.single('resume'), async (req, res) => {
   try {
     const { jobDescription, roleType, resumeText } = req.body;
 
@@ -83,6 +84,7 @@ router.post('/analyze', upload.single('resume'), async (req, res) => {
     const parsed = JSON.parse(rawText);
 
     const assessment = await Assessment.create({
+      userId: req.userId,
       resumeText: extractedText,
       jobDescription,
       roleType: roleType || 'software_engineer',
