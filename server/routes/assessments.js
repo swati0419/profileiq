@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const Assessment = require('../models/Assessment');
 const requireAuth = require('../middleware/auth');
 
@@ -21,7 +22,7 @@ router.get('/', async (req, res) => {
 router.get('/stats/summary', async (req, res) => {
   try {
     const stats = await Assessment.aggregate([
-      { $match: { userId: req.userId } },
+      { $match: { userId: new mongoose.Types.ObjectId(req.userId) } },
       {
         $group: {
           _id: null,
