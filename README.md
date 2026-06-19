@@ -27,10 +27,10 @@ AI-powered resume evaluation platform. Upload a resume and a job description, an
 
 | Layer | Technology |
 |---|---|
-| Frontend | React 18, Vite, React Router, Recharts, Axios |
+| Frontend | React, Vite, React Router, Recharts, Axios |
 | Backend | Node.js, Express |
 | Database | MongoDB (MongoDB Atlas) with Mongoose |
-| Authentication | JWT, bcryptjs |
+| Authentication | JWT |
 | AI | Groq API (Llama 3.3 70B) |
 | PDF parsing | pdf2json |
 | Deployment | Vercel (frontend), Render (backend), MongoDB Atlas (database) |
@@ -128,36 +128,8 @@ Visit **http://localhost:5173**
 
 ---
 
-## API endpoints
 
-| Method | Endpoint | Auth required | Description |
-|---|---|---|---|
-| POST | `/api/auth/register` | No | Create a new account |
-| POST | `/api/auth/login` | No | Log in, returns JWT |
-| GET | `/api/auth/me` | Yes | Get current logged-in user |
-| POST | `/api/resume/analyze` | Yes | Submit resume + JD for AI analysis |
-| GET | `/api/assessments` | Yes | List your past assessments |
-| GET | `/api/assessments/:id` | Yes | Get one assessment in full detail |
-| DELETE | `/api/assessments/:id` | Yes | Delete an assessment |
-| GET | `/api/assessments/stats/summary` | Yes | Aggregate stats for the dashboard |
-| GET | `/api/health` | No | Health check |
 
-All protected routes require an `Authorization: Bearer <token>` header.
 
----
 
-## Deployment notes
 
-- **Frontend (Vercel):** root directory `client`, build command `npm run build`, output directory `dist`. Includes a `vercel.json` rewrite rule so client-side routes (e.g. `/dashboard`) don't 404 on refresh.
-- **Backend (Render):** root directory `server`, start command `node index.js`. Environment variables set in the Render dashboard.
-- **Database (MongoDB Atlas):** free M0 cluster, network access opened to allow connections from Render.
-- **CORS:** backend allows requests only from the deployed frontend URL (`CLIENT_URL` env variable) plus `localhost:5173` for local dev.
-
----
-
-## Future improvements
-
-- Export assessment results as a PDF report
-- Side-by-side comparison of two resumes against the same job description
-- "Most commonly missing keywords" chart on the dashboard
-- Resume templates suggested by role type
